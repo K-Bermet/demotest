@@ -36,18 +36,17 @@ public class TestClass {
     }
 
     @Test
-    public void testLoginPage() {
+    public void testLoginPage(){
         String URL = "https://app.mjplatform.com/login";
         driver.get(URL);
 
         WebElement username = driver.findElement(By.cssSelector("#name"));
         WebElement password = driver.findElement(By.cssSelector("#password"));
         WebElement loginIntoAccount = driver.findElement(By.xpath("//button[.='Log into  Account']"));
+        WebElement browserIncompatible = driver.findElement(By.xpath("//div[contains(text(),'your browser is most likely out of date or incompatible')]"));
 
         if (browserName.toLowerCase().equals("ie")) {
-            Assert.assertFalse(username.isDisplayed());
-            Assert.assertFalse(password.isDisplayed());
-            Assert.assertFalse(loginIntoAccount.isDisplayed());
+            Assert.assertTrue(browserIncompatible.isDisplayed());
         }
 
         Assert.assertTrue(username.isDisplayed());
